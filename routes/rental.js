@@ -6,7 +6,7 @@ router.get('/new', (req,res)=>{
 })
 
 router.get('/all', (req,res)=>{
-	res.render('all')
+	res.render('view')
 })
 
 module.exports = router
