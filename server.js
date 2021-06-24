@@ -2,6 +2,8 @@ const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const app = express()
 const indexRouter = require('./routes/index')
+
+const rentalRouter = require('./routes/rental')
 require('./db/db')
 
 app.set("view engine" , "ejs")
@@ -13,6 +15,7 @@ app.use(express.urlencoded({ extended: false }))
 
 
 app.use('/', indexRouter)
+app.use('/rent', rentalRouter)
 
 const port = 3000;
 app.listen(port, ()=> console.log(`listening on ${port}`))
