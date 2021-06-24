@@ -1,29 +1,32 @@
 <hr>
 
 <div class="d-grid justify-content-center align-items-center h-600">
+<form action="/upload" method="POST" enctype="multipart/form-data">
 
 <div class="form-outline">
-  <input type="text" id="form1" class="form-control" />
+  <input type="text" id="form1" name="name" class="form-control" />
   <label class="form-label" for="form1">Name</label>
   </div>
   <br>
 
-<div class="form-outline">
-  <input type="text" id="form1" class="form-control" />
-  <label class="form-label" for="form1">Availabilty</label>
-  </div>
+  <div class="form-outline">
 
-   <br>
-   <div class="form-outline">
-
-  <input type="text" id="form1" class="form-control" />
+  <input type="text" id="form1" name="area" class="form-control" />
   <label class="form-label" for="form1">Area</label>
   </div>
 
    <br>
+
+<div class="form-outline">
+  <input type="text" name="available" id="form1" class="form-control" />
+  <label class="form-label" for="form1">Availabilty</label>
+  </div>
+
+   <br>
+   
 <div class="form-outline">
 
-  <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
+  <textarea class="form-control" name="description" id="textAreaExample" rows="4"></textarea>
   <label class="form-label" for="textAreaExample">Description</label>
   </div>
 
@@ -31,7 +34,7 @@
 
    <div class="form-outline">
 
-  <input type="text" id="form1" class="form-control" />
+  <input type="text" name="contact" id="form1" class="form-control" />
   <label class="form-label" for="form1">contact</label>
 
   </div>
@@ -41,10 +44,13 @@
    <div class="form-outline">
 
   
-  <input type="file" class="form-control" id="customFile" />
+  <input type="file" name="image" class="form-control" id="customFile" />
 
 </div>
 <br>
 
 <button type="button" class="btn btn-dark">Submit</button>
+
+</form>
+
 </div>
