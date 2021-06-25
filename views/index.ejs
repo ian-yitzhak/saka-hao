@@ -13,15 +13,55 @@
           <h4 class="mb-3">HERE</h4>
           <div class="input-group">
   <div class="form-outline">
-    <input id="search-focus" name="search" type="search" id="form1" class="form-control" />
+  <form  action="/" method="GET"  autocomplete="off">
+    <input class="form-control" id="search-focus" name="area" type="search" id="form1"   value="<%= search.area %>" />
     <label class="form-label" for="form1">Search</label>
   </div>
-  <button type="button" class="btn btn-primary">
+  <button type="submit" class="btn btn-primary">
     <i class="fas fa-search"></i>
   </button>
+  </form>
 </div>
         </div>
       </div>
     </div>
   </div>
+
+
+
+
   <!-- Background image -->
+
+   <main class="my-5">
+    <div class="container">
+      <!--Section: Content-->
+      <section class="text-center">
+        <h4 class="mb-5"><strong>OUR STORE</strong></h4>
+
+        <div class="row">
+         <% allHouse.forEach(mesage => { %>
+          <div class="col-lg-6 mb-4">
+
+            <div class="card">
+              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
+                <a href="#!">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= mesage.name %></h5>
+                <h5 class="card-title"><%= mesage.area %></h5>
+                <p class="card-text">
+                  <%= mesage.description %>
+                </p>
+                <a href="#!" class="btn btn-danger"><%= mesage.available %></a>
+                <a href="#!" class="btn btn-primary"><%= mesage.contact %></a>
+              </div>
+            </div>
+            
+          </div>
+           <% }) %>
+
+         
+      </section>

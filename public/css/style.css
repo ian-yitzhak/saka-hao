@@ -14,3 +14,7 @@
 	margin: 20px;
 
 }
+#search-focus{
+	background: blue;
+	color: white;
+}
