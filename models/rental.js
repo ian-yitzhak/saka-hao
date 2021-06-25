@@ -10,8 +10,12 @@ const rentalSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	area:{
+		type: String,
+		required: true
+	},
 
-	availability:{
+	available:{
 		type: String,
 		required: true
 	},
@@ -19,11 +23,6 @@ const rentalSchema = new mongoose.Schema({
 	description:{
 		type: String,
 		required: true
-	},
-
-	img:{
-		data: Buffer, 
-        contentType: String
 	}
 
 	

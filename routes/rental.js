@@ -17,8 +17,9 @@ router.get('/new', (req,res)=>{
 	res.render('new')
 })
 
-router.get('/all', (req,res)=>{
-	res.render('view')
+router.get('/all', async(req,res)=>{
+	const allHouse = await rental.find() 
+	res.render('view', {allHouse: allHouse})
 })
 
 
@@ -27,14 +28,15 @@ router.post('/new',upload.single('avatar'), async (req,res)=>{
 	const houseInfo = new rental({
 		name: req.body.name, 
 		contact: req.body.contact,
+		area: req.body.area,
 		available: req.body.available,
 		description: req.body.description,
-		img:req.file.image
+		
 		
 	})
 	try{
 		await houseInfo.save()
-		res.redirect('/all')
+		res.redirect('/rent/all')
 	}catch(err){
 		console.log(err)
 	}
