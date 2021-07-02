@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const path = require('path')
 const imagesCover = 'uploads/images'
 
 const rentalSchema = new mongoose.Schema({
@@ -33,6 +34,13 @@ const rentalSchema = new mongoose.Schema({
 	}
 
 	
+})
+
+rentalSchema.virtual('imagepath').get(function(){
+	if(this.imagesCoverName != null){
+		return path.join('/' , imagesCover , this.imagesCoverName)
+
+	}
 })
 
 module.exports = mongoose.model('Rental' , rentalSchema)
