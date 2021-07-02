@@ -1,3 +1,7 @@
+body{
+	background: rgba(0, 120, 80, 1.0);
+}
+
 .mb-lg-0{
 	display:  flex;
 	justify-content: center;
@@ -17,4 +21,8 @@
 #search-focus{
 	background: blue;
 	color: white;
+}
+#file{
+
+	color: black;
 }

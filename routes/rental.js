@@ -1,17 +1,19 @@
 const express = require('express')
-const multer = require('multer')
+
 const router = express.Router()
 const rental = require('../models/rental')
-const storage = multer.diskStorage({
-    destination:(req,file,cb)=>{
-        cb(null, 'uploads')
-    },
-    filename: (req,file,cb)=>{
-        cb(null, Date.now() + path.extname(file.originalname) )
-    }
+const multer = require('multer')
+const path = require('path')
+const uploadPath = path.join('public', rental.imagesCover )
+const imageTypes = ['image/jpeg', 'image/png', 'image/jpg' ]
 
+const upload = multer({
+	dest:uploadPath,
+	filefilter : (req,file,callback) => {
+		callback(null , imageTypes.includes(file.mimetype))
+
+	}
 })
-const upload = multer({storage: storage})
 
 router.get('/new', (req,res)=>{
 	res.render('new')
@@ -23,7 +25,8 @@ router.get('/all', async(req,res)=>{
 })
 
 
-router.post('/new',upload.single('avatar'), async (req,res)=>{
+router.post('/new',upload.single('image'), async (req,res)=>{
+	const fileName = req.file != null ? req.file.filename : null
 
 	const houseInfo = new rental({
 		name: req.body.name, 
@@ -31,6 +34,7 @@ router.post('/new',upload.single('avatar'), async (req,res)=>{
 		area: req.body.area,
 		available: req.body.available,
 		description: req.body.description,
+		image: fileName
 		
 		
 	})

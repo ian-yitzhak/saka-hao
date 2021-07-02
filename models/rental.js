@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const imagesCover = 'uploads/images'
 
 const rentalSchema = new mongoose.Schema({
 	name:{
@@ -23,9 +24,17 @@ const rentalSchema = new mongoose.Schema({
 	description:{
 		type: String,
 		required: true
+	},
+	image:{
+
+		type: String,
+		required: true
+
 	}
 
 	
 })
 
 module.exports = mongoose.model('Rental' , rentalSchema)
+
+module.exports.imagesCover=imagesCover
