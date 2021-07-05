@@ -1,19 +1,29 @@
 const express = require('express')
-
+const fs = require('fs')
+const path = require('path');
 const router = express.Router()
 const rental = require('../models/rental')
 const multer = require('multer')
-const path = require('path')
-const uploadPath = path.join('public', rental.imagesCover )
-const imageTypes = ['image/jpeg', 'image/png', 'image/jpg' ]
 
-const upload = multer({
-	dest:uploadPath,
-	filefilter : (req,file,callback) => {
-		callback(null , imageTypes.includes(file.mimetype))
 
+
+const storage = multer.diskStorage({
+
+	destination: function(req,file,cb){
+		cb(null, './public/uploads/images')
+	},
+
+	filename: function(req,file,cb){
+		cb(null,Date.now() + '-' + file.originalname)
 	}
 })
+
+const upload  =multer({
+	storage: storage,
+	limits:{
+		fieldSize : 1024 * 1024 * 3,
+	},
+});
 
 router.get('/new', (req,res)=>{
 	res.render('new')
@@ -26,16 +36,13 @@ router.get('/all', async(req,res)=>{
 
 
 router.post('/new',upload.single('image'), async (req,res)=>{
-	const fileName = req.file != null ? req.file.filename : null
-
-	const houseInfo = new rental({
+		const houseInfo = new rental({
 		name: req.body.name, 
 		contact: req.body.contact,
 		area: req.body.area,
 		available: req.body.available,
 		description: req.body.description,
-		image: fileName
-		
+		image:req.file.filename,
 		
 	})
 	try{

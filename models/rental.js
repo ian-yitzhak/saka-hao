@@ -1,7 +1,4 @@
 const mongoose = require('mongoose')
-const path = require('path')
-const imagesCover = 'uploads/images'
-
 const rentalSchema = new mongoose.Schema({
 	name:{
 		type: String,
@@ -26,23 +23,13 @@ const rentalSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	image:{
+	image:{	 
+    type: String,
+    default: 'placeholder.jpg',
+  
+       }
+   })
 
-		type: String,
-		required: true
-
-	}
-
-	
-})
-
-rentalSchema.virtual('imagepath').get(function(){
-	if(this.imagesCoverName != null){
-		return path.join('/' , imagesCover , this.imagesCoverName)
-
-	}
-})
 
 module.exports = mongoose.model('Rental' , rentalSchema)
 
-module.exports.imagesCover=imagesCover
